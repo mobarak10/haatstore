@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 py-3">
-                <h1 class="text-center pt-5 pb-4 d-none d-print-block">Zaman Enterprise</h1>
+                <h1 class="text-center pt-5 pb-4 d-none d-print-block">Haat Store</h1>
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h5 class="m-0">Product Report </h5>
@@ -35,7 +35,7 @@
                                     </div>
 
                                     <div class="form-group col-md-4 required">
-                                        <label for="to-date">Product</label>
+                                        <label for="product">Product</label>
                                         <select name="product_id" id="product" class="form-control" required>
                                             <option value="" selected disabled>Choose one</option>
                                             @foreach($records['products'] as $product)
@@ -280,3 +280,14 @@
     </div>
     </div>
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function() {
+            $('#product').select2({
+                width: 400,
+                height: 100
+            });
+        });
+    </script>
+@endpush

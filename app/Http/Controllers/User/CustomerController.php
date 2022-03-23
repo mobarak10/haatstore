@@ -32,10 +32,11 @@ class CustomerController extends Controller
 
         $business_id = Auth::user()->business_id;
         $customers = Party::where('business_id', $business_id)->customers()->paginate(30);
+        $print_customers = Party::where('business_id', $business_id)->customers()->get();
         $total_balance = Party::where('business_id', $business_id)->customers()->sum('balance');
 
         if (request()->search) {
-//            return \request()->all();
+        //    return \request()->all();
 
             // set conditions
             $where = [
@@ -57,16 +58,17 @@ class CustomerController extends Controller
 
             if (request()->balance_status){
                 if (\request()->balance_status === 'receivable'){
-                    $customer->where('balance', '<=', 0);
+                    $customer->where('balance', '<=', -1);
                 }else{
                     $customer->where('balance', '>', 0);
                 }
             }
-
+            $print_customers = $customer->get();
             $customers = $customer->paginate(30);
+            
         }
 
-        return view('user.customer.index', compact('customers', 'total_balance'))->with($this->meta);
+        return view('user.customer.index', compact('customers','print_customers', 'total_balance'))->with($this->meta);
     }
 
     /**
