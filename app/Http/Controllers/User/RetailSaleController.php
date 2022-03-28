@@ -206,21 +206,5 @@ class RetailSaleController extends Controller
         });
         return response()->json($this->sale);
 
-        // sales table
-        // auth()->id() // salesman id
-        // auth()->user()->business_id // business id
-        // delivered = true
-
-        /* TODO:
-            1. Semi DONE-> Validation
-            2. DONE-> Create customer (customer name*)
-            3. DONE->Store in sale table
-            4. DONE Sale Details // done: add serial_number column
-            5. DONE Sale Quantity
-            6. DONE Decrement product quantity from warehouse
-            7. DONE Sale payment
-            8. DONE Increment Cash Balance  / Bank Account balance
-
-        */
     }
 }
